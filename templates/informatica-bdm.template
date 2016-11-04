@@ -433,7 +433,29 @@
                     {
                         "Name": "NodeInstall",
                         "ScriptBootstrapAction": {
-                            "Path": "s3://bdm-awsmarketplace/bootstrap_rpm_installer.bash"
+                            "Path": {
+                                "Fn::Join": [
+                                    "/",
+                                    [
+                                        {
+                                            "Fn::FindInMap": [
+                                                "AWSInfoRegionMap",
+                                                {
+                                                    "Ref": "AWS::Region"
+                                                },
+                                                "QuickStartS3URL"
+                                            ]
+                                        },
+                                        {
+                                            "Ref": "QSS3BucketName"
+                                        },
+                                        {
+                                            "Ref": "QSS3KeyPrefix"
+                                        },
+                                        "scripts/bootstrap_rpm_installer.sh"
+                                    ]
+                                ]
+                            }
                         }
                     }
                 ],
