@@ -437,15 +437,7 @@
                                 "Fn::Join": [
                                     "/",
                                     [
-                                        {
-                                            "Fn::FindInMap": [
-                                                "AWSInfoRegionMap",
-                                                {
-                                                    "Ref": "AWS::Region"
-                                                },
-                                                "QuickStartS3URL"
-                                            ]
-                                        },
+                                        "s3:/",
                                         {
                                             "Ref": "QSS3BucketName"
                                         },
