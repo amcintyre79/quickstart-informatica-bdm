@@ -25,20 +25,39 @@
                     "Parameters": [
                         "KeyPairName",
                         "NATInstanceType",
-                        "BastionAMIOS",
-                        "Bastion1InstanceType",
-                        "Bastion1PrivateIP",
-                        "Bastion2InstanceType",
-                        "Bastion2PrivateIP"
+                        "EMRMasterInstanceType",
+                        "EMRCoreInstanceType",
+                        "InformaticaServerInstanceType"
                     ]
                 },
                 {
                     "Label": {
-                        "default": "Linux Bastion Configuration"
+                        "default": "Amazon EMR Configuration"
                     },
                     "Parameters": [
-                        "EnableBanner",
-                        "BastionBanner"
+                        "EMRClusterName",
+                        "EMRCoreNodes",
+                        "EMRLogBucket"
+                    ]
+                },
+                {
+                    "Label": {
+                        "default": "Amazon RDS Configuration"
+                    },
+                    "Parameters": [
+                        "DBUser",
+                        "DBPassword"
+                    ]
+                },
+                {
+                    "Label": {
+                        "default": "Informatica Big Data Management Configuration"
+                    },
+                    "Parameters": [
+                        "InformaticaAdminUser",
+                        "InformaticaAdminPassword",
+                        "InformaticaBDMKeyS3Bucket",
+                        "InformaticaBDMKeyName"
                     ]
                 },
                 {
@@ -55,26 +74,41 @@
                 "AvailabilityZones": {
                     "default": "Availability Zones"
                 },
-                "Bastion1InstanceType": {
-                    "default": "Bastion 1 Instance Type"
+                "DBPassword": {
+                    "default": "Informatica Database Password"
                 },
-                "Bastion1PrivateIP": {
-                    "default": "Bastion 1 Private IP Address"
+                "DBUser": {
+                    "default": "Informatica Database Username"
                 },
-                "Bastion2InstanceType": {
-                    "default": "Bastion 2 Instance Type"
+                "EMRClusterName": {
+                    "default": "EMR Cluster Name"
                 },
-                "Bastion2PrivateIP": {
-                    "default": "Bastion 2 Private IP Address"
+                "EMRCoreInstanceType": {
+                    "default": "EMR Core Nodes"
                 },
-                "BastionAMIOS": {
-                    "default": "Bastion AMI Operating System"
+                "EMRCoreNodes": {
+                    "default": "EMR Core Nodes"
                 },
-                "BastionBanner": {
-                    "default": "Bastion Banner"
+                "EMRLogBucket": {
+                    "default": "EMR Logs Bucket Name"
                 },
-                "EnableBanner": {
-                    "default": "Enable Banner"
+                "EMRMasterInstanceType": {
+                    "default": "EMR Master Node"
+                },
+                "InformaticaAdminPassword": {
+                    "default": "Informatica Administrator Password"
+                },
+                "InformaticaAdminUser": {
+                    "default": "Informatica Administrator Username"
+                },
+                "InformaticaBDMKeyName": {
+                    "default": "BDM License Key Name"
+                },
+                "InformaticaBDMKeyS3Bucket": {
+                    "default": "BDM License Key Location"
+                },
+                "InformaticaServerInstanceType": {
+                    "default": "Informatica Domain Instance Type"
                 },
                 "KeyPairName": {
                     "default": "Key Pair Name"
@@ -114,80 +148,94 @@
             "Description": "List of Availability Zones to use for the subnets in the VPC. Note: The logical order is preserved and only 2 AZs are used for this deployment.",
             "Type": "List<AWS::EC2::AvailabilityZone::Name>"
         },
-        "Bastion1InstanceType": {
-            "Description": "Amazon EC2 instance type for the first bastion instance",
-            "Type": "String",
-            "Default": "t2.micro",
+        "DBPassword": {
+            "Description": "Password for the Informatica domain and the Model repository database instance",
+            "MaxLength": "18",
+            "MinLength": "8",
+            "NoEcho": "True",
+            "Type": "String"
+        },
+        "DBSubnetIDs": {
+            "Description": "Select two subnet IDs each from a different region in the VPC chosen above (such as: us-west-1b, us-west-1c)",
+            "Type": "List<AWS::EC2::Subnet::Id>"
+        },
+        "DBUser": {
+            "Description": "Username for the Informatica domain and the Model repository database instance",
+            "MaxLength": "18",
+            "MinLength": "8",
+            "Type": "String"
+        },
+        "EMRClusterName": {
+            "Description": "Enter a name for your EMR cluster",
+            "Type": "String"
+        },
+        "EMRCoreInstanceType": {
             "AllowedValues": [
-                "t2.nano",
-                "t2.micro",
-                "t2.small",
-                "t2.medium",
-                "t2.large",
-                "m3.large",
                 "m3.xlarge",
                 "m3.2xlarge",
+                "c3.large",
+                "c3.xlarge",
+                "c3.2xlarge"
+            ],
+            "Default": "m3.xlarge",
+            "Description": "Enter the instance type for the EMR core nodes. Default is m3.xlarge",
+            "Type": "String"
+        },
+        "EMRCoreNodes": {
+            "Description": "Enter the number of Core Nodes. Minimum is 1",
+            "MaxValue": "500",
+            "MinValue": "1",
+            "Type": "Number"
+        },
+        "EMRLogBucket": {
+            "Description": "Enter the S3 bucket for the EMR logs",
+            "Type": "String"
+        },
+        "EMRMasterInstanceType": {
+            "AllowedValues": [
+                "m3.xlarge",
+                "m3.2xlarge",
+                "c3.large",
+                "c3.xlarge",
+                "c3.2xlarge"
+            ],
+            "Default": "m3.xlarge",
+            "Description": "Enter the instance type for the EMR master node. Default is m3.xlarge",
+            "Type": "String"
+        },
+        "InformaticaAdminPassword": {
+            "Description": "Password to access Informatica Administrator",
+            "NoEcho": "True",
+            "Type": "String"
+        },
+        "InformaticaAdminUser": {
+            "Description": "Username to access Informatica Administrator",
+            "Type": "String"
+        },
+        "InformaticaBDMKeyName": {
+            "Description": "The Informatica BDM license key name. Example: BDMLicense.key or bucketsubfolder/BDMLicense.key",
+            "Type": "String"
+        },
+        "InformaticaBDMKeyS3Bucket": {
+            "Description": "Enter the S3 bucket in your account that contains your Informatica BDM key",
+            "Type": "String"
+        },
+        "InformaticaServerInstanceType": {
+            "AllowedValues": [
                 "m4.large",
                 "m4.xlarge",
                 "m4.2xlarge",
-                "m4.4xlarge"
-            ]
-        },
-        "Bastion1PrivateIP": {
-            "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
-            "ConstraintDescription": "IP address parameter must be in the form x.x.x.x",
-            "Default": "10.0.128.5",
-            "Description": "Fixed private IP for the first bastion located in Availability Zone 1",
-            "Type": "String"
-        },
-        "Bastion2InstanceType": {
-            "Description": "Amazon EC2 instance type for the second bastion instance",
-            "Type": "String",
-            "Default": "t2.micro",
-            "AllowedValues": [
-                "t2.nano",
-                "t2.micro",
-                "t2.small",
-                "t2.medium",
-                "t2.large",
+                "m4.4xlarge",
+                "m4.10xlarge",
                 "m3.large",
                 "m3.xlarge",
                 "m3.2xlarge",
-                "m4.large",
-                "m4.xlarge",
-                "m4.2xlarge",
-                "m4.4xlarge"
-            ]
-        },
-        "Bastion2PrivateIP": {
-            "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
-            "ConstraintDescription": "IP address parameter must be in the form x.x.x.x",
-            "Default": "10.0.144.5",
-            "Description": "Fixed private IP for the second bastion located in Availability Zone 2",
-            "Type": "String"
-        },
-        "BastionBanner": {
-            "Default": "https://s3.amazonaws.com/quickstart-reference/linux/bastion/latest/scripts/banner_message.txt",
-            "Description": "Banner text to display upon login",
-            "Type": "String"
-        },
-        "EnableBanner": {
-            "AllowedValues": [
-                "true",
-                "false"
+                "c3.xlarge",
+                "c3.2xlarge",
+                "c3.4xlarge"
             ],
-            "Default": "false",
-            "Description": "To include a banner to be displayed when connecting via SSH to the bastion, set this parameter to true",
-            "Type": "String"
-        },
-        "BastionAMIOS": {
-            "AllowedValues": [
-                "AmazonLinuxHVM",
-                "CentOS7HVM",
-                "UbuntuServer1404LTSHVM"
-            ],
-            "Default": "AmazonLinuxHVM",
-            "Description": "The Linux distribution for the AMI to be used for the bastion instances",
+            "Default": "m4.large",
+            "Description": "Enter the instance type for the Informatica Administrator. Default is m4.large",
             "Type": "String"
         },
         "KeyPairName": {
@@ -254,7 +302,7 @@
         "RemoteAccessCIDR": {
             "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))$",
             "ConstraintDescription": "CIDR block parameter must be in the form x.x.x.x/x",
-            "Description": "Allowed CIDR block for external SSH access to the bastions",
+            "Description": "Allowed CIDR block for external access to the Informatica domain and the EMR cluster",
             "Type": "String"
         },
         "VPCCIDR": {
@@ -383,97 +431,6 @@
                 }
             }
         },
-        "BastionStack": {
-            "DependsOn": "VPCStack",
-            "Type": "AWS::CloudFormation::Stack",
-            "Properties": {
-                "TemplateURL": {
-                    "Fn::Join": [
-                        "/",
-                        [
-                            {
-                                "Fn::FindInMap": [
-                                    "AWSInfoRegionMap",
-                                    {
-                                        "Ref": "AWS::Region"
-                                    },
-                                    "QuickStartS3URL"
-                                ]
-                            },
-                            {
-                                "Ref": "QSS3BucketName"
-                            },
-                            {
-                                "Ref": "QSS3KeyPrefix"
-                            },
-                            "submodules/quickstart-linux-bastion",
-                            "templates/linux-bastion.template"
-                        ]
-                    ]
-                },
-                "Parameters": {
-                    "Bastion1InstanceType": {
-                        "Ref": "Bastion1InstanceType"
-                    },
-                    "Bastion1PrivateIP": {
-                        "Ref": "Bastion1PrivateIP"
-                    },
-                    "Bastion2InstanceType": {
-                        "Ref": "Bastion2InstanceType"
-                    },
-                    "Bastion2PrivateIP": {
-                        "Ref": "Bastion2PrivateIP"
-                    },
-                    "BastionAMIOS": {
-                        "Ref": "BastionAMIOS"
-                    },
-                    "BastionBanner": {
-                        "Ref": "BastionBanner"
-                    },
-                    "EnableBanner": {
-                        "Ref": "EnableBanner"
-                    },
-                    "KeyPairName": {
-                        "Ref": "KeyPairName"
-                    },
-                    "PublicSubnet1ID": {
-                        "Fn::GetAtt": [
-                            "VPCStack",
-                            "Outputs.PublicSubnet1ID"
-                        ]
-                    },
-                    "PublicSubnet2ID": {
-                        "Fn::GetAtt": [
-                            "VPCStack",
-                            "Outputs.PublicSubnet2ID"
-                        ]
-                    },
-                    "QSS3BucketName": {
-                        "Ref": "QSS3BucketName"
-                    },
-                    "QSS3KeyPrefix": {
-                        "Fn::Join": [
-                            "/",
-                            [
-                                {
-                                    "Ref": "QSS3KeyPrefix"
-                                },
-                                "submodules/quickstart-linux-bastion"
-                            ]
-                        ]
-                    },
-                    "RemoteAccessCIDR": {
-                        "Ref": "RemoteAccessCIDR"
-                    },
-                    "VPCID": {
-                        "Fn::GetAtt": [
-                            "VPCStack",
-                            "Outputs.VPCID"
-                        ]
-                    }
-                }
-            }
-        },
         "BDMStack": {
             "DependsOn": "VPCStack",
             "Type": "AWS::CloudFormation::Stack",
@@ -502,7 +459,85 @@
                     ]
                 },
                 "Parameters": {
-                    
+                    "DBPassword": {
+                        "Ref": "DBPassword"
+                    },
+                    "DBSubnetIDs": {
+                        "Fn::Join": [
+                            ",",
+                            [
+                                {
+                                    "Fn::GetAtt": [
+                                        "VPCStack",
+                                        "Outputs.PrivateSubnet1ID"
+                                    ]
+                                },
+                                {
+                                    "Fn::GetAtt": [
+                                        "VPCStack",
+                                        "Outputs.PrivateSubnet2ID"
+                                    ]
+                                }
+                            ]
+                        ]
+                    },
+                    "DBUser": {
+                        "Ref": "DBUser"
+                    },
+                    "EMRClusterName": {
+                        "Ref": "EMRClusterName"
+                    },
+                    "EMRCoreInstanceType": {
+                        "Ref": "EMRCoreInstanceType"
+                    },
+                    "EMRCoreNodes": {
+                        "Ref": "EMRCoreNodes"
+                    },
+                    "EMRLogBucket": {
+                        "Ref": "EMRLogBucket"
+                    },
+                    "EMRMasterInstanceType": {
+                        "Ref": "EMRMasterInstanceType"
+                    },
+                    "InformaticaAdminPassword": {
+                        "Ref": "InformaticaAdminPassword"
+                    },
+                    "InformaticaAdminUser": {
+                        "Ref": "InformaticaAdminUser"
+                    },
+                    "InformaticaBDMKeyName": {
+                        "Ref": "InformaticaBDMKeyName"
+                    },
+                    "InformaticaBDMKeyS3Bucket": {
+                        "Ref": "InformaticaBDMKeyS3Bucket"
+                    },
+                    "InformaticaServerInstanceType": {
+                        "Ref": "InformaticaServerInstanceType"
+                    },
+                    "KeyPairName": {
+                        "Ref": "KeyPairName"
+                    },
+                    "PublicSubnet1ID": {
+                        "Fn::GetAtt": [
+                            "VPCStack",
+                            "Outputs.PublicSubnet1ID"
+                        ]
+                    },
+                    "QSS3BucketName": {
+                        "Ref": "QSS3BucketName"
+                    },
+                    "QSS3KeyPrefix": {
+                        "Ref": "QSS3KeyPrefix"
+                    },
+                    "RemoteAccessCIDR": {
+                        "Ref": "RemoteAccessCIDR"
+                    },
+                    "VPCID": {
+                        "Fn::GetAtt": [
+                            "VPCStack",
+                            "Outputs.VPCID"
+                        ]
+                    }
                 }
             }
         }
