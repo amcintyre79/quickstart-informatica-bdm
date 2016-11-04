@@ -155,10 +155,6 @@
             "NoEcho": "True",
             "Type": "String"
         },
-        "DBSubnetIDs": {
-            "Description": "Select two subnet IDs each from a different region in the VPC chosen above (such as: us-west-1b, us-west-1c)",
-            "Type": "List<AWS::EC2::Subnet::Id>"
-        },
         "DBUser": {
             "Description": "Username for the Informatica domain and the Model repository database instance",
             "MaxLength": "18",
