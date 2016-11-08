@@ -9,7 +9,7 @@
     },
     {
         "ParameterKey": "DBUser",
-        "ParameterValue": "dbadmin"
+        "ParameterValue": "dbadministrator"
     },
     {
         "ParameterKey": "EMRClusterName",
