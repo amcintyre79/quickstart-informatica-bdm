@@ -1,0 +1,86 @@
+[
+    {
+        "ParameterKey": "AvailabilityZones",
+        "ParameterValue": "$[alfred_genaz_2]"
+    },
+    {
+        "ParameterKey": "DBPassword",
+        "ParameterValue": "@[alfred_genpass_18]"
+    },
+    {
+        "ParameterKey": "DBUser",
+        "ParameterValue": "dbadmin"
+    },
+    {
+        "ParameterKey": "EMRClusterName",
+        "ParameterValue": "$[alfred_genuuid]"
+    },
+    {
+        "ParameterKey": "EMRCoreInstanceType",
+        "ParameterValue": "m3.xlarge"
+    },
+    {
+        "ParameterKey": "EMRCoreNodes",
+        "ParameterValue": "2"
+    },
+    {
+        "ParameterKey": "EMRLogBucket",
+        "ParameterValue": ""
+    },
+    {
+        "ParameterKey": "EMRMasterInstanceType",
+        "ParameterValue": "m3.xlarge"
+    },
+    {
+        "ParameterKey": "InformaticaAdminPassword",
+        "ParameterValue": "$[alfred_genpass_18]"
+    },
+    {
+        "ParameterKey": "InformaticaAdminUser",
+        "ParameterValue": "infaadmin"
+    },
+    {
+        "ParameterKey": "InformaticaBDMKeyName",
+        "ParameterValue": "$[alfred_getlicensebucket]"
+    },
+    {
+        "ParameterKey": "InformaticaBDMKeyS3Bucket",
+        "ParameterValue": "informatica/bdm/BDMLicense.key"
+    },
+    {
+        "ParameterKey": "InformaticaServerInstanceType",
+        "ParameterValue": "m4.large"
+    },
+    {
+        "ParameterKey": "KeyPairName",
+        "ParameterValue": "cikey"
+    },
+    {
+        "ParameterKey": "NATInstanceType",
+        "ParameterValue": "t2.small"
+    },
+    {
+        "ParameterKey": "PrivateSubnet1CIDR",
+        "ParameterValue": "10.0.0.0/19"
+    },
+    {
+        "ParameterKey": "PrivateSubnet2CIDR",
+        "ParameterValue": "10.0.32.0/19"
+    },
+    {
+        "ParameterKey": "PublicSubnet1CIDR",
+        "ParameterValue": "10.0.128.0/20"
+    },
+    {
+        "ParameterKey": "PublicSubnet2CIDR",
+        "ParameterValue": "10.0.144.0/20"
+    },
+    {
+        "ParameterKey": "RemoteAccessCIDR",
+        "ParameterValue": "10.0.0.0/16"
+    },
+    {
+        "ParameterKey": "VPCCIDR",
+        "ParameterValue": "10.0.0.0/16"
+    }
+]
