@@ -606,6 +606,15 @@
                 "GroupDescription": "Enable Informatica Domain Server Access",
                 "VpcId": {
                     "Ref": "VPCID"
+                }
+            }
+        },
+        "RemoteAccessInfaDomainSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Enable Informatica Domain Server Access",
+                "VpcId": {
+                    "Ref": "VPCID"
                 },
                 "SecurityGroupIngress": [
                     {
@@ -1018,6 +1027,9 @@
                 "SecurityGroupIds": [
                     {
                         "Ref": "InfaDomainSecurityGroup"
+                    },
+                    {
+                        "Ref": "RemoteAccessInfaDomainSecurityGroup"
                     }
                 ],
                 "SubnetId": {
