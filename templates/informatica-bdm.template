@@ -1056,7 +1056,7 @@
                         "Fn::Join": [
                             "",
                             [
-                                "#!/bin/bash\n",
+                                "#!/bin/bash -x\n",
                                 "sudo yum update -y aws-cfn-bootstrap\n",
                                 "# Install the files and packages from the metadata\n",
                                 "/opt/aws/bin/cfn-init -v ",
