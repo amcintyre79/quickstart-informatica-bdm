@@ -761,34 +761,6 @@
                 ]
             }
         },
-        "CfnUser": {
-            "Type": "AWS::IAM::User",
-            "Properties": {
-                "Path": "/",
-                "Policies": [
-                    {
-                        "PolicyName": "root",
-                        "PolicyDocument": {
-                            "Statement": [
-                                {
-                                    "Effect": "Allow",
-                                    "Action": "cloudformation:DescribeStackResource",
-                                    "Resource": "*"
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
-        },
-        "CfnUserKey": {
-            "Type": "AWS::IAM::AccessKey",
-            "Properties": {
-                "UserName": {
-                    "Ref": "CfnUser"
-                }
-            }
-        },
         "AdministrationServer": {
             "Type": "AWS::EC2::Instance",
             "Metadata": {
@@ -830,31 +802,6 @@
                                             "region=",
                                             {
                                                 "Ref": "AWS::Region"
-                                            },
-                                            "\n"
-                                        ]
-                                    ]
-                                },
-                                "mode": "000400",
-                                "owner": "ec2-user",
-                                "group": "ec2-user"
-                            },
-                            "/etc/cfn/cfn-credentials": {
-                                "content": {
-                                    "Fn::Join": [
-                                        "",
-                                        [
-                                            "AWSAccessKeyId=",
-                                            {
-                                                "Ref": "CfnUserKey"
-                                            },
-                                            "\n",
-                                            "AWSSecretKey=",
-                                            {
-                                                "Fn::GetAtt": [
-                                                    "CfnUserKey",
-                                                    "SecretAccessKey"
-                                                ]
                                             },
                                             "\n"
                                         ]
@@ -1004,8 +951,7 @@
                                 },
                                 "mode": "000400",
                                 "owner": "ec2-user",
-                                "group": "ec2-user",
-                                "authentication": "S3AccessCreds"
+                                "group": "ec2-user"
                             }
                         }
                     },
@@ -1112,17 +1058,6 @@
                                 "         --region ",
                                 {
                                     "Ref": "AWS::Region"
-                                },
-                                "         --access-key ",
-                                {
-                                    "Ref": "CfnUserKey"
-                                },
-                                "         --secret-key ",
-                                {
-                                    "Fn::GetAtt": [
-                                        "CfnUserKey",
-                                        "SecretAccessKey"
-                                    ]
                                 },
                                 "\n",
                                 "# Signal the status from cfn-init\n",
