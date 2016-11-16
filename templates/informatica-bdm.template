@@ -80,7 +80,7 @@
                     "default": "EMR Cluster Name"
                 },
                 "EMRCoreInstanceType": {
-                    "default": "EMR Core Nodes"
+                    "default": "EMR Core Instance Type"
                 },
                 "EMRCoreNodes": {
                     "default": "EMR Core Nodes"
@@ -89,7 +89,7 @@
                     "default": "EMR Logs Bucket Name"
                 },
                 "EMRMasterInstanceType": {
-                    "default": "EMR Master Node"
+                    "default": "EMR Master Instance Type"
                 },
                 "InformaticaAdminPassword": {
                     "default": "Informatica Administrator Password"
