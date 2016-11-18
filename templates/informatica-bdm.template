@@ -596,7 +596,7 @@
                         ]
                     ]
                 },
-                "AllocatedStorage": "100",
+                "AllocatedStorage": "200",
                 "DBInstanceClass": "db.m4.large",
                 "DBSubnetGroupName": {
                     "Ref": "InfaDBSubnetGroup"
