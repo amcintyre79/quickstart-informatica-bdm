@@ -597,7 +597,7 @@
                     ]
                 },
                 "AllocatedStorage": "100",
-                "DBInstanceClass": "db.t2.small",
+                "DBInstanceClass": "db.m4.large",
                 "DBSubnetGroupName": {
                     "Ref": "InfaDBSubnetGroup"
                 },
