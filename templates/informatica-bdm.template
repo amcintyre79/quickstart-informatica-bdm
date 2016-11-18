@@ -153,9 +153,15 @@
             "AllowedValues": [
                 "m3.xlarge",
                 "m3.2xlarge",
+                "m4.large",
+                "m4.xlarge",
+                "m4.2xlarge",
                 "c3.large",
                 "c3.xlarge",
-                "c3.2xlarge"
+                "c3.2xlarge",
+                "c4.large",
+                "c4.xlarge",
+                "c4.2xlarge"
             ],
             "Default": "m3.xlarge",
             "Description": "Enter the instance type for the EMR core nodes. Default is m3.xlarge",
@@ -175,9 +181,15 @@
             "AllowedValues": [
                 "m3.xlarge",
                 "m3.2xlarge",
+                "m4.large",
+                "m4.xlarge",
+                "m4.2xlarge",
                 "c3.large",
                 "c3.xlarge",
-                "c3.2xlarge"
+                "c3.2xlarge",
+                "c4.large",
+                "c4.xlarge",
+                "c4.2xlarge"
             ],
             "Default": "m3.xlarge",
             "Description": "Enter the instance type for the EMR master node. Default is m3.xlarge",
