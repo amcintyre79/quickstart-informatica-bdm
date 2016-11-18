@@ -792,6 +792,15 @@
                 ]
             }
         },
+        "AdministrationServerEIP": {
+            "Type": "AWS::EC2::EIP",
+            "Properties": {
+                "Domain": "vpc",
+                "InstanceId": {
+                    "Ref": "AdministrationServer"
+                }
+            }
+        },
         "AdministrationServer": {
             "Type": "AWS::EC2::Instance",
             "Metadata": {
