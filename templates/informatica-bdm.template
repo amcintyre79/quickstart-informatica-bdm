@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Informatica Big Data Management",
+    "Description": "Informatica Big Data Management QS(5014)",
     "Metadata": {
         "AWS::CloudFormation::Interface": {
             "ParameterGroups": [
