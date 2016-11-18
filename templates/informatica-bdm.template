@@ -607,6 +607,7 @@
                     }
                 ],
                 "Engine": "sqlserver-se",
+                "EngineVersion": "12.00.5000.0.v1",
                 "LicenseModel": "license-included",
                 "MasterUsername": {
                     "Ref": "DBUser"
