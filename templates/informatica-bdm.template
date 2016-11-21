@@ -315,16 +315,16 @@
                 "INFORMATICABDMHVM": "ami-35059659"
             },
             "us-east-1": {
-                "INFORMATICABDMHVM": "ami-db6125cc"
+                "INFORMATICABDMHVM": "ami-e396a1f4"
             },
             "us-east-2": {
                 "INFORMATICABDMHVM": "ami-d65309b3"
             },
             "us-west-1": {
-                "INFORMATICABDMHVM": "ami-6d78320d"
+                "INFORMATICABDMHVM": "ami-13e44873"
             },
             "us-west-2": {
-                "INFORMATICABDMHVM": "ami-6748e907"
+                "INFORMATICABDMHVM": "ami-3b79d55b"
             }
         },
         "AWSInfoRegionMap": {
@@ -1136,7 +1136,7 @@
             },
             "CreationPolicy": {
                 "ResourceSignal": {
-                    "Timeout": "PT1H45M"
+                    "Timeout": "PT3H"
                 }
             }
         }
