@@ -291,37 +291,22 @@
                 "INFORMATICABDMHVM": "Informatica BDM Administration Image"
             },
             "ap-northeast-1": {
-                "INFORMATICABDMHVM": "ami-0aa37f6b"
+                "INFORMATICABDMHVM": "ami-509b2f31"
             },
             "ap-northeast-2": {
-                "INFORMATICABDMHVM": "ami-be5581d0"
-            },
-            "ap-south-1": {
-                "INFORMATICABDMHVM": "ami-6394e00c"
-            },
-            "ap-southeast-1": {
-                "INFORMATICABDMHVM": "ami-08f2566b"
+                "INFORMATICABDMHVM": "ami-6cab7c02"
             },
             "ap-southeast-2": {
-                "INFORMATICABDMHVM": "ami-bdd8e4de"
-            },
-            "eu-central-1": {
-                "INFORMATICABDMHVM": "ami-00cd316f"
+                "INFORMATICABDMHVM": "ami-d2053bb1"
             },
             "eu-west-1": {
-                "INFORMATICABDMHVM": "ami-37155244"
+                "INFORMATICABDMHVM": "ami-9a4815e9"
             },
             "sa-east-1": {
-                "INFORMATICABDMHVM": "ami-35059659"
+                "INFORMATICABDMHVM": "ami-6ada4406"
             },
             "us-east-1": {
                 "INFORMATICABDMHVM": "ami-e396a1f4"
-            },
-            "us-east-2": {
-                "INFORMATICABDMHVM": "ami-d65309b3"
-            },
-            "us-west-1": {
-                "INFORMATICABDMHVM": "ami-13e44873"
             },
             "us-west-2": {
                 "INFORMATICABDMHVM": "ami-3b79d55b"
@@ -336,19 +321,7 @@
                 "Partition": "aws",
                 "QuickStartS3URL": "https://s3.amazonaws.com"
             },
-            "ap-south-1": {
-                "Partition": "aws",
-                "QuickStartS3URL": "https://s3.amazonaws.com"
-            },
-            "ap-southeast-1": {
-                "Partition": "aws",
-                "QuickStartS3URL": "https://s3.amazonaws.com"
-            },
             "ap-southeast-2": {
-                "Partition": "aws",
-                "QuickStartS3URL": "https://s3.amazonaws.com"
-            },
-            "eu-central-1": {
                 "Partition": "aws",
                 "QuickStartS3URL": "https://s3.amazonaws.com"
             },
@@ -363,18 +336,10 @@
             "us-east-1": {
                 "Partition": "aws",
                 "QuickStartS3URL": "https://s3.amazonaws.com"
-            },
-            "us-east-2": {
-                "Partition": "aws",
-                "QuickStartS3URL": "https://s3.amazonaws.com"
-            },
+            }
             "us-gov-west-1": {
                 "Partition": "aws-us-gov",
                 "QuickStartS3URL": "https://s3-us-gov-west-1.amazonaws.com"
-            },
-            "us-west-1": {
-                "Partition": "aws",
-                "QuickStartS3URL": "https://s3.amazonaws.com"
             },
             "us-west-2": {
                 "Partition": "aws",
